@@ -4,13 +4,18 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>f2863ee0-2f10-48e7-acb6-96300d3d710c</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>dler_manga.py</StartupFile>
+    <StartupFile>temporary.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
     <OutputPath>.</OutputPath>
     <Name>downloader</Name>
     <RootNamespace>downloader</RootNamespace>
+    <IsWindowsApplication>False</IsWindowsApplication>
+    <LaunchProvider>Standard Python launcher</LaunchProvider>
+    <CommandLineArguments>
+    </CommandLineArguments>
+    <EnableNativeCodeDebugging>False</EnableNativeCodeDebugging>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <DebugSymbols>true</DebugSymbols>
@@ -25,6 +30,7 @@
     <Compile Include="dler_desktop.py" />
     <Compile Include="dler_manga.py" />
     <Compile Include="dler_krdoc.py" />
+    <Compile Include="dler_novel.py" />
     <Compile Include="temporary.py">
       <SubType>Code</SubType>
     </Compile>

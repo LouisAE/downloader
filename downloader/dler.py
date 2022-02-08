@@ -1,11 +1,9 @@
-import urllib.parse
-import urllib.request as ur
-import urllib.error as ue
-from time import sleep
+import sys
 import requests
+from time import sleep
 import re
 import os
-from retrying import retry
+import argparse
 
 #custom error
 class dlError(Exception):
@@ -21,8 +19,20 @@ class Menu():
 #constant variable area
 addr = "D:/开发/C++/testfile/"
 
-#@retry(stop_max_attempt_number=3)
-def get_info(url,file = addr + "temp.txt",mode = "text"):
+def get_args():
+    parser = argparse.ArgumentParser(description = \
+        "Download file(s) from appointed URLs")
+    parser.add_argument("-u","--url",action = 'store',dest="urls",type=str,\
+        help="The url which should contain the protol name.\n \
+        For example, \"https://example.com/\" is right while \"example.com\" is wrong.")
+    parser.add_argument("-o","--output",action = 'store',dest="filename",type=str,help=\
+        "The location of output file(s)")
+    return parser.parse_args(sys.argv[1:])
+
+
+
+
+def download(url,file,mode):
     """
     获取文本或二进制数据
     mode参数可以是：text,binary。
@@ -55,10 +65,34 @@ def get_info(url,file = addr + "temp.txt",mode = "text"):
         print("Skipping...")
         #os.system("pause")
 
-def main():
-    get_info("https://i1.lspcdn.xyz/galleries/2040509/203.jpg",addr+"203.jpg","binary")
-    os.system("pause")
+def dl_multiply(s = 0,e = float("inf")):
+    f2 = open(addr+"temp.txt","r",encoding="utf-8")
+    f2c = f2.read()
+    f2.close()
+    title = re.search("(?<=<h1\>).+(?=</h1\>)",f2c).group()
+    if not os.path.exists(addr+title):
+        os.mkdir(addr+title)
+    pic_url = re.findall("<img class=\"vimg\" src=\"(.+)\"\><",f2c)
 
+    i = 0
+    for u in pic_url:
+        i+=1
+        if(i<s):
+            continue
+        if(i>e):
+            break
+        download(u,addr+title+"/"+str(i)+u[-4:],"binary")
+        sleep(1)
+
+
+
+
+def main():
+    url = input("Input URL:")
+    download(url,addr+"temp.txt","text")
+    #args=get_args()
+    #print(args)
+    #download(args.urls,args.filename,"binary")
 if __name__ == "__main__":
     main()
 

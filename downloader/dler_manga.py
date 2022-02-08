@@ -28,7 +28,7 @@ def withdraw_address(s = 0,e = float("inf")):#提取图片网址并下载
             continue
         if(i>e):
             break
-        get_info(u,addr+title+"/"+str(i)+u[-4:],"binary")
+        download(u,addr+title+"/"+str(i)+u[-4:],"binary")
         sleep(1)
 
 def main():

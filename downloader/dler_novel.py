@@ -58,15 +58,5 @@ if __name__ == "__main__":
         while tsuzuki:
             tsuzuki = dl_novel(u[:-5]+"_"+str(count)+".html",addr+"temp.txt")
             count+=1
-"""
-    while url != "END":
-       pnum = int(input("Input page numbers:"))
-       iter = 2
-       dl_novel(url,addr+"temp.txt")
-       while(iter<=pnum):
-           dl_novel(url[:-5]+"_"+str(iter)+".html",addr+"temp.txt")
-           iter+=1
-       url = input("Input address:")
-"""
 
       
